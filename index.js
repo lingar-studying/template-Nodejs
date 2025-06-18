@@ -1,14 +1,14 @@
 const express = require('express');
+const {connectToMongo} = require('./Services/connectionWithMongo.js');
 const router = require('./Services/webServices'); 
-const PORT = 4851;
+
 const app = express();
-const {runMe} = require('./Services/cmd-service');
+const PORT = 4000;
 
 app.use(express.json());
 app.use('/api', router); 
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-
-  runMe()
+app.listen(PORT, () => {  
+  connectToMongo();
+  console.log(`the server is good ${PORT}`);
 });
