@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-
+import mongoose from "mongoose";
 const artistSchema = new mongoose.Schema({
   name: { type: String, required: true },
   categoryId: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
@@ -8,4 +7,4 @@ const artistSchema = new mongoose.Schema({
   likes: { type: String }, // מה הוא אוהב
 });
 
-module.exports = { artistSchema };
+export default artistSchema;

@@ -1,15 +1,15 @@
-const express = require('express');
+import express from "express";
 const router = express.Router();
-const {
+import  {
   getAllEntities,
   getEntity,
   createEntity,
   updateEntity,
   deleteEntity,
-} = require('../server/db/entity-dao');
+} from '../Services/generaldao.js';
 
-const { artistSchema } = require('../schemas/artist');
-const { categorySchema } = require('../schemas/category');
+import  artistSchema from '../schemas/artist.js';
+import categorySchema from '../schemas/category.js';
 
 // ----- ARTISTS -----
 router.get('/artists', async (req, res) => {
@@ -105,4 +105,4 @@ router.delete('/categories/:id', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
