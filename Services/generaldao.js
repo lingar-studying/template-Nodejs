@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-import { connectDB2 } from '@/server/db/db-services.js';
+import { connectToMongo } from './connectionWithMongo';
 
-const getOrCreateModel = (entityName, optionalSchema = null) => {
+export const getOrCreateModel = (entityName, optionalSchema = null) => {
   try {
     return mongoose.model(entityName);
   } catch {
@@ -13,26 +13,26 @@ const getOrCreateModel = (entityName, optionalSchema = null) => {
 // ============================
 
 export const getAllEntities = async (entityName, optionalSchema = null) => {
-  await connectDB2();
+  await connectToMongo();
   const EntityModel = getOrCreateModel(entityName, optionalSchema);
   return await EntityModel.find();
 };
 
 export const getEntity = async (entityName, id, optionalSchema = null) => {
-  await connectDB2();
+  await connectToMongo();
   const EntityModel = getOrCreateModel(entityName, optionalSchema);
   return await EntityModel.findById(id);
 };
 
 export const createEntity = async (data, entityName, optionalSchema = null) => {
-  await connectDB2();
+  await connectToMongo();
   const EntityModel = getOrCreateModel(entityName, optionalSchema);
   const newItem = new EntityModel(data);
   return await newItem.save();
 };
 
 export const updateEntity = async (data, entityName, optionalSchema = null) => {
-  await connectDB2();
+  await connectToMongo();
   const EntityModel = getOrCreateModel(entityName, optionalSchema);
 
   const result = await EntityModel.findOneAndUpdate(
@@ -49,7 +49,7 @@ export const updateEntity = async (data, entityName, optionalSchema = null) => {
 };
 
 export const deleteEntity = async (id, entityName, optionalSchema = null) => {
-  await connectDB2();
+  await connectToMongo();
   const EntityModel = getOrCreateModel(entityName, optionalSchema);
 
   const toDelete = await EntityModel.findById(id);
@@ -59,4 +59,5 @@ export const deleteEntity = async (id, entityName, optionalSchema = null) => {
 
   await toDelete.deleteOne();
   return { success: true };
+
 };
