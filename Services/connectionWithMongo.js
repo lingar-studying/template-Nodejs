@@ -1,7 +1,7 @@
 // Services/connectionWithMongo.js
 import mongoose from 'mongoose';
 
-const MONGO_URI = 'mongodb://localhost:27017/IzarJudaicaProMax';
+const MONGO_URI = 'mongodb://lingar:12345678@localhost:27017/IzarJudaicaProMax?authSource=admin';
 
 // Track connection state to prevent multiple connections
 let isConnected = false;

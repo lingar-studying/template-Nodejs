@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { connectToMongo } from './connectionWithMongo';
+import { connectToMongo} from "./connectionWithMongo.js";
 
 export const getOrCreateModel = (entityName, optionalSchema = null) => {
   try {
