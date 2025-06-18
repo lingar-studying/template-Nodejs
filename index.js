@@ -1,14 +1,11 @@
 const express = require('express');
-const router = require('./Services/webServices'); 
-const PORT = 4851;
+const router = require('./routes/entities');
 const app = express();
-const {runMe} = require('./Services/cmd-service');
+const PORT = 3000;
 
 app.use(express.json());
-app.use('/api', router); 
+app.use('/api', router);
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-
-  runMe()
+  console.log(`✅ Server running at http://localhost:${PORT}`);
 });
