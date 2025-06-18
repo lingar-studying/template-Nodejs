@@ -2,11 +2,12 @@
 import express from 'express';
 import { connectToMongo } from './Services/connectionWithMongo.js';
 import { createEntity } from './Services/generaldao.js';
-
+import appRouter from "./routes/entities.js";
 const app = express();
 const PORT = 4000;
 
 app.use(express.json());
+app.use('/ws', appRouter);
 
 connectToMongo().then(async () => {
   // רק אם אתה רוצה לבדוק יצירה אוטומטית:
